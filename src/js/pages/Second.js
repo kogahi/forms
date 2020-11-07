@@ -5,19 +5,18 @@ export default class Second extends React.Component {
   constructor() {
     super();
     this.state = {
-      insu_status:"",
-      hospi_status:"",
+      insuStatus: '',
+      hospiStatus: ''
     };
   }
 
   handleChangeInsu(e){
-   this.setState({insu_status:e.target.value});
+   this.setState({insuStatus: e.target.value});
   }
 
   handleChangeHospi(e){
-    this.setState({hospi_status:e.target.value});
+    this.setState({hospiStatus: e.target.value});
   }
-
 
   render() {
     return (
@@ -32,35 +31,30 @@ export default class Second extends React.Component {
             <div className="radio">
               <form>
                 <input type="radio" id="insu_yes" name="insu_status" value="yes"
-                onChange={this.handleChangeInsu.bind(this)} checked={this.state.insu_status==="yes"} />
+                onChange={this.handleChangeInsu.bind(this)} checked={this.state.insuStatus === "yes"} />
                 <label for="yes">はい</label>
                 <input type="radio" id="insu_no" name="insu_status" value="no"
-                 onChange={this.handleChangeInsu.bind(this)} checked={this.state.insu_status==="no"}/>
+                 onChange={this.handleChangeInsu.bind(this)} checked={this.state.insuStatus === "no"}/>
                 <label for="no">いいえ</label>
               </form>
         　  </div>
       　  </div>
-          {this.state.insu_status==="yes" || this.state.insu_status ==="no" ? 
-          <div class="now_status">
+          <div class="now_status" style={{ display: this.state.insuStatus === '' ? 'none' : ''}}>
             <div>
                 <span>現在入院中ですか。または、最近3カ月以内に医師の診察・検索の結果、入院・手術を勧められたことはありますか？</span>
             </div>
             <div className="radio">
               <form>
                 <input type="radio" id="hospi_yes" name="hospi_status" value="yes"
-                 onChange={this.handleChangeHospi.bind(this)} checked={this.state.hospi_status==="yes"} />
+                 onChange={this.handleChangeHospi.bind(this)} checked={this.state.hospiStatus === "yes"} />
                 <label for="yes">はい</label>
                 <input type="radio" id="hospi_no" name="hospi_status" value="no"
-                   onChange={this.handleChangeHospi.bind(this)} checked={this.state.hospi_status==="yes"} />
+                   onChange={this.handleChangeHospi.bind(this)} checked={this.state.hospiStatus === "no"} />
                 <label for="no">いいえ</label>
               </form>
         　  </div>
       　  </div>
-          :
-          ""
-          }
-          {this.state.hospi_status ==="yes" || this.state.hospi_status==="no" ?
-          <div class="past_status">
+          <div class="past_status" style={{ display: this.state.hospiStatus === '' ? 'none' : ''}}>
             <div>
                 <span>過去5年以内に、病気やけがで、手術をうけたことまたは継続して7日以上の入院をしたことがありますか？</span>
             </div>
@@ -73,9 +67,6 @@ export default class Second extends React.Component {
               </form>
         　  </div>
       　  </div>
-        :
-        ""
-         }
         </div> 
         <Link to="/">
         <button  >前へ戻る<i class="fas fa-angle-right"></i></button>
