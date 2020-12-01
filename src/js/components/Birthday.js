@@ -3,36 +3,39 @@ import React from "react";
 export default class Birthday extends React.Component {
     render(){
       const years = [
-        {value: "-", label:'-'}
+        {value: '-', label: '-'}
       ];
-      for(let i=1990; i<2021; i++){
+      for(let i = 1990; i < 2021; i++){
         const value = '';
         const label = '';
             years.push({
-              value:i,
-              label: i})
-          };
+              value: i,
+              label: i
+            })
+      };
       const months = [
-        {value: "-", label:'-'}
+        {value: '-', label: '-'}
       ];
-      for(let i=1; i<32; i++){
+      for(let i = 1; i < 32; i++){
         const value = '';
         const label = '';
             months.push({
-              value:i,
-              label: i})
-          };
+              value: i,
+              label: i
+            })
+      };
       const days = [
-       {value: "-", label:'-'}
+       {value: '-', label: '-'}
       ];
-      for(let i=1; i<32; i++){
+      for(let i = 1; i < 32; i++){
         const value = '';
         const label = '';
             months.push({
-              value:i,
-              label: i})
-          };
-      const selectYear = years.map( (year) => 
+              value: i,
+              label: i
+            })
+      };
+      const selectYear = years.map((year) => 
        <option value={year.value}>{year.label}</option>
       );
       const selectMonth = months.map((month) => 
