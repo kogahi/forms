@@ -69,10 +69,10 @@ export default class Second extends React.Component {
       　  </div>
         </div> 
         <Link to="/">
-        <button  >前へ戻る<i class="fas fa-angle-right"></i></button>
+         <button  >前へ戻る<i class="fas fa-angle-right"></i></button>
         </Link>
         <Link to="/third">
-        <button >次へ進む<i class="fas fa-angle-right"></i></button>
+          <button >次へ進む<i class="fas fa-angle-right"></i></button>
         </Link>
     </div>
     );
