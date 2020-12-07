@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom"; //次ボタン用
+import { Link } from "react-router-dom";
+import actions from "../../actions/actions";
+import { connect } from "react-redux";
 
-export default class Third extends React.Component {
+class Third extends React.Component {
   render() {
     return (
       <div class="container">
@@ -10,20 +12,50 @@ export default class Third extends React.Component {
           <span>ご相談内容をご記入ください</span>
           <div class="consultations">
             <div>
-                <span>-ご相談内容-</span>
+              <span>-ご相談内容-</span>
             </div>
             <div className="sub_container">
-              <textarea/>
-        　  </div>
-      　  </div>
-        </div> 
+              <textarea
+                id="consultations"
+                onChange={() =>
+                  this.props.toChangeConsultations(
+                    "UPD_CONSULTATIONS",
+                    document.getElementById("consultations").value
+                  )
+                }
+              />
+            </div>
+          </div>
+        </div>
         <Link to="/second">
-        <button>前へ戻る<i class="fas fa-angle-right"></i></button>
+          <button>
+            前へ戻る<i class="fas fa-angle-right"></i>
+          </button>
         </Link>
-        <Link to="/third">
-        <button>次へ進む<i class="fas fa-angle-right"></i></button>
+        <Link to="/last">
+          <button>
+            次へ進む<i class="fas fa-angle-right"></i>
+          </button>
         </Link>
-    </div>
+      </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    consultations: state.Ans.consultations,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toChangeConsultations(target, value) {
+      console.log(value);
+
+      dispatch(actions.setValue(target, value));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Third);

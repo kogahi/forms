@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Birthday from "../components/Birthday"; 
+import Birthday from "../components/Birthday";
+import actions from "../../actions/actions";
+import { connect } from "react-redux";
 
-export default class First extends React.Component {
+class First extends React.Component {
   render() {
     return (
       <div class="container">
@@ -11,25 +13,61 @@ export default class First extends React.Component {
           <span>お客様の情報を入力してください</span>
           <div class="sex">
             <div>
-                <span>-性別-</span>
+              <span>-性別-</span>
             </div>
             <div className="radio">
               <form>
-                <input type="radio" id="male" name="sex" value="male" />
+                <input
+                  type="radio"
+                  id="male"
+                  name="sex"
+                  value="male"
+                  onChange={() => this.props.toChangeMale("UPD_SEX", "male")}
+                />
                 <label for="male">男</label>
-                <input type="radio" id="female" name="sex" value="female"/>
+                <input
+                  type="radio"
+                  id="female"
+                  name="sex"
+                  value="female"
+                  onChange={() =>
+                    this.props.toChangeFemale("UPD_SEX", "female")
+                  }
+                />
                 <label for="female">女</label>
               </form>
-        　  </div>
-      　  </div>
+            </div>
+          </div>
           <div class="birthday">
-            <Birthday></Birthday>
-        　</div>
+            <Birthday onChange={this.props.onChangeBirthday} />
+          </div>
         </div>
-        <Link to="/second"> 
-         <button >次へ進む<i class="fas fa-angle-right"></i></button>
+        <Link to="/second">
+          <button>
+            次へ進む<i class="fas fa-angle-right"></i>
+          </button>
         </Link>
-     </div>
+      </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    sex: state.Ans.sex,
+    birthday: state.Ans.birthday,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toChangeMale(target, value) {
+      dispatch(actions.setValue(target, value));
+    },
+    toChangeFemale(target, value) {
+      dispatch(actions.setValue(target, value));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(First);
