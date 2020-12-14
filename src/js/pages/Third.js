@@ -4,6 +4,15 @@ import actions from "../../actions/actions";
 import { connect } from "react-redux";
 
 class Third extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      consultations: "",
+    };
+  }
+  toChangeConsultations(e) {
+    this.setState({ consultations: e.target.value });
+  }
   render() {
     return (
       <div class="container">
@@ -17,12 +26,7 @@ class Third extends React.Component {
             <div className="sub_container">
               <textarea
                 id="consultations"
-                onChange={() =>
-                  this.props.toChangeConsultations(
-                    "UPD_CONSULTATIONS",
-                    document.getElementById("consultations").value
-                  )
-                }
+                onChange={this.toChangeConsultations.bind(this)}
               />
             </div>
           </div>
@@ -33,7 +37,11 @@ class Third extends React.Component {
           </button>
         </Link>
         <Link to="/last">
-          <button>
+          <button
+            onClick={() =>
+              this.props.handleChangeThirdValue("UPD_STATUS", this.state)
+            }
+          >
             次へ進む<i class="fas fa-angle-right"></i>
           </button>
         </Link>
@@ -44,15 +52,13 @@ class Third extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    consultations: state.Ans.consultations,
+    consultations: state.consultations,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toChangeConsultations(target, value) {
-      console.log(value);
-
+    handleChangeThirdValue(target, value) {
       dispatch(actions.setValue(target, value));
     },
   };

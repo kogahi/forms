@@ -4,6 +4,27 @@ import actions from "../../actions/actions";
 import { connect } from "react-redux";
 
 class Second extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      insuStatus: "",
+      hospiStatus: "",
+      pastStatus: "",
+    };
+  }
+
+  toChangeInsuStatus(e) {
+    this.setState({ insuStatus: e.target.value });
+  }
+
+  toChangeHospiStatus(e) {
+    this.setState({ hospiStatus: e.target.value });
+  }
+
+  toChangePastStatus(e) {
+    this.setState({ pastStatus: e.target.value });
+  }
+
   render() {
     return (
       <div className="container">
@@ -20,20 +41,16 @@ class Second extends React.Component {
                   type="radio"
                   id="insu_yes"
                   name="insu_status"
-                  value="insu_yes"
-                  onChange={() =>
-                    this.props.toChangeInsu("UPD_INSUSTATUS", "yes")
-                  }
+                  value="yes"
+                  onChange={this.toChangeInsuStatus.bind(this)}
                 />
                 <label for="yes">はい</label>
                 <input
                   type="radio"
                   id="insu_no"
                   name="insu_status"
-                  value="insu_no"
-                  onChange={() =>
-                    this.props.toChangeInsu("UPD_INSUSTATUS", "no")
-                  }
+                  value="no"
+                  onChange={this.toChangeInsuStatus.bind(this)}
                 />
                 <label for="no">いいえ</label>
               </form>
@@ -41,7 +58,7 @@ class Second extends React.Component {
           </div>
           <div
             className="now_status"
-            style={{ display: this.props.insuStatus === "" ? "none" : "" }}
+            style={{ display: this.state.insuStatus === "" ? "none" : "" }}
           >
             <div>
               <span>
@@ -54,20 +71,16 @@ class Second extends React.Component {
                   type="radio"
                   id="hospi_yes"
                   name="hospi_status"
-                  value="hospi_yes"
-                  onChange={() =>
-                    this.props.toChangeHospi("UPD_HOSPISTATUS", "yes")
-                  }
+                  value="yes"
+                  onChange={this.toChangeHospiStatus.bind(this)}
                 />
                 <label for="yes">はい</label>
                 <input
                   type="radio"
                   id="hospi_no"
                   name="hospi_status"
-                  value="hospi_no"
-                  onChange={() =>
-                    this.props.toChangeHospi("UPD_HOSPISTATUS", "no")
-                  }
+                  value="no"
+                  onChange={this.toChangeHospiStatus.bind(this)}
                 />
                 <label for="no">いいえ</label>
               </form>
@@ -75,7 +88,7 @@ class Second extends React.Component {
           </div>
           <div
             class="past_status"
-            style={{ display: this.props.hospiStatus === "" ? "none" : "" }}
+            style={{ display: this.state.hospiStatus === "" ? "none" : "" }}
           >
             <div>
               <span>
@@ -88,20 +101,16 @@ class Second extends React.Component {
                   type="radio"
                   id="past_yes"
                   name="past_status"
-                  value="past_yes"
-                  onChange={() =>
-                    this.props.toChangePast("UPD_PASTSTATUS", "yes")
-                  }
+                  value="yes"
+                  onChange={this.toChangePastStatus.bind(this)}
                 />
                 <label for="yes">はい</label>
                 <input
                   type="radio"
                   id="past_no"
                   name="past_status"
-                  value="past_no"
-                  onChange={() =>
-                    this.props.toChangePast("UPD_PASTSTATUS", "no")
-                  }
+                  value="no"
+                  onChange={this.toChangePastStatus.bind(this)}
                 />
                 <label for="no">いいえ</label>
               </form>
@@ -114,7 +123,11 @@ class Second extends React.Component {
           </button>
         </Link>
         <Link to="/third">
-          <button>
+          <button
+            onClick={() =>
+              this.props.handleChangeSecondValue("UPD_STATUS", this.state)
+            }
+          >
             次へ進む<i class="fas fa-angle-right"></i>
           </button>
         </Link>
@@ -125,21 +138,15 @@ class Second extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    insuStatus: state.Ans.insuStatus,
-    hospiStatus: state.Ans.hospiStatus,
-    pastStatus: state.Ans.pastStatus,
+    insuStatus: state.insuStatus,
+    hospiStatus: state.hospiStatus,
+    pastStatus: state.pastStatus,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toChangeInsu(target, value) {
-      dispatch(actions.setValue(target, value));
-    },
-    toChangeHospi(target, value) {
-      dispatch(actions.setValue(target, value));
-    },
-    toChangePast(target, value) {
+    handleChangeSecondValue(target, value) {
       dispatch(actions.setValue(target, value));
     },
   };

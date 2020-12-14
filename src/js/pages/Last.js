@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 class Last extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <div class="container">
         <div class="input-box">
@@ -24,8 +25,8 @@ class Last extends React.Component {
             </div>
             <div className="birthday">
               <span>
-                {this.props.birthdayYear}年{this.props.birthdayMonth}月
-                {this.props.birthdayDay}日
+                {this.props.birthYear}年{this.props.birthMonth}月
+                {this.props.birthDay}日
               </span>
             </div>
           </div>
@@ -81,14 +82,14 @@ class Last extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    sex: state.Ans.sex,
-    birthdayYear: state.Ans.birthdayYear,
-    birthdayMonth: state.Ans.birthdayMonth,
-    birthdayDay: state.Ans.birthdayDay,
-    insuStatus: state.AnsinsuStatus,
-    hospiStatus: state.Ans.hospiStatus,
-    pastStatus: state.Ans.pastStatus,
-    consultations: state.Ans.consultations,
+    sex: state.sex,
+    birthYear: state.birthYear,
+    birthMonth: state.birthMonth,
+    birthDay: state.birthDay,
+    insuStatus: state.insuStatus,
+    hospiStatus: state.hospiStatus,
+    pastStatus: state.pastStatus,
+    consultations: state.consultations,
   };
 };
 
