@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import actions from "../../actions/actions";
-import { connect } from "react-redux";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import actions from '../../actions/actions';
+import { connect } from 'react-redux';
 
 class Third extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      consultations: "",
+      consultations: '',
     };
   }
   toChangeConsultations(e) {
@@ -15,34 +15,34 @@ class Third extends React.Component {
   }
   render() {
     return (
-      <div class="container">
-        <div class="input-box">
-          <i class="fas fa-address-card"></i>
+      <div class='container'>
+        <div class='input-box'>
+          <i class='fas fa-address-card'></i>
           <span>ご相談内容をご記入ください</span>
-          <div class="consultations">
+          <div class='consultations'>
             <div>
               <span>-ご相談内容-</span>
             </div>
-            <div className="sub_container">
+            <div className='sub_container'>
               <textarea
-                id="consultations"
+                id='consultations'
                 onChange={this.toChangeConsultations.bind(this)}
               />
             </div>
           </div>
         </div>
-        <Link to="/second">
+        <Link to='/second'>
           <button>
-            前へ戻る<i class="fas fa-angle-right"></i>
+            前へ戻る<i class='fas fa-angle-right'></i>
           </button>
         </Link>
-        <Link to="/last">
+        <Link to='/last'>
           <button
             onClick={() =>
-              this.props.handleChangeThirdValue("UPD_STATUS", this.state)
+              this.props.handleChangeThirdValue('UPD_STATUS', this.state)
             }
           >
-            次へ進む<i class="fas fa-angle-right"></i>
+            次へ進む<i class='fas fa-angle-right'></i>
           </button>
         </Link>
       </div>

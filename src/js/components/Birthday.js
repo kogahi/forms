@@ -1,7 +1,7 @@
-import React from "react";
-import actions from "../../actions/actions";
-import { connect } from "react-redux";
-import BirthSelect from "./definition.js";
+import React from 'react';
+import actions from '../../actions/actions';
+import { connect } from 'react-redux';
+import BirthSelect from './definition.js';
 
 class Birthday extends React.Component {
   constructor(props) {
@@ -34,24 +34,24 @@ class Birthday extends React.Component {
     ));
 
     return (
-      <div class="birthday">
+      <div class='birthday'>
         <div>
           <span>-生年月日-</span>
         </div>
-        <div className="select">
-          <select id="birth-year" name="year" onChange={this.handleChangeYear}>
+        <div className='select'>
+          <select id='birth-year' name='year' onChange={this.handleChangeYear}>
             {selectYear}
           </select>
           　年
           <select
-            id="birth-month"
-            name="month"
+            id='birth-month'
+            name='month'
             onChange={this.handleChangeMonth}
           >
             {selectMonth}
           </select>
           　月
-          <select id="birth-day" name="day" onChange={this.handleChangeDay}>
+          <select id='birth-day' name='day' onChange={this.handleChangeDay}>
             {selectDay}
           </select>
           　日
